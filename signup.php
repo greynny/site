@@ -87,11 +87,11 @@ include_once 'connect/connect.php';
 
 							<form id="myform" action="" method="POST">
 								<div class="top-margin">
-									<label>Ім'я</label>
+									<label>Ім'я<span class="text-danger">*</span></label>
 									<input type="text" class="form-control" name="name">
 								</div>
 								<div class="top-margin">
-									<label>Призвище</label>
+									<label>Призвище<span class="text-danger">*</span></label>
 									<input type="text" class="form-control" name="lastname">
 								</div>
 								<div class="top-margin">
