@@ -1,3 +1,7 @@
+<?php
+session_start();
+include_once 'connect/connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,8 +52,8 @@
 					<li><a href="index.php">Головна</a></li>
 					<li><a href="about.php">Про сервіс</a></li>
 					<li><a href="#">Особистий кабінет</a>	</li>
-					<li class="active"><a href="contact.html">Контакт</a></li>
-					<li><a class="btn" href="signin.html">Авторизація / Реєстрація</a></li>
+					<li class="active"><a href="contact.php">Контакт</a></li>
+					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -118,15 +122,9 @@
                                 $("#sbm").attr("disabled", "disabled");
                             }
                         });
-                        $('#modal').on('click', function(){
-                            $.alert({
-                                title: 'Alert!',
-                                content: 'Simple alert!',
-                            });
-                        });
                     });
                 </script>
-
+                <script type="text/javascript" src="modal/modal_contakt.js"></script>
 			</article>
 			<!-- /Article -->
 			

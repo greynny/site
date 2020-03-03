@@ -41,10 +41,10 @@
                     <div class="widget-body">
                         <p class="simplenav">
                             <a href="index.php">Головна</a> |
-                            <a href="about.html">Про сервіс</a> |
+                            <a href="about.php">Про сервіс</a> |
                             <a href="">Особистий кабінет</a> |
                             <a href="contact.php">Контакт</a> |
-                            <b><a href="signup.php">Авторизація / Реєстрація</a></b>
+                            <b><a href="signin.php">Авторизація / Реєстрація</a></b>
                         </p>
                     </div>
                 </div>
