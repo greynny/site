@@ -19,20 +19,25 @@ include_once 'connect/connect.php';
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Валидация формы -->
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="assets/js/form_search.js"></script>
 <style>
-    .row-flex{
-        display: flex;
-        display: -webkit-flex;
-        -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    }
+
     .thumb{
         border: 1px solid #ccc;
         border-radius: 4px;
         background-color: #ecf3e6;
         height: calc(100% - 15px);
         padding:10px;
+    }
+    .error {  color: #800;  text-align: center;  }
+    input.error, textarea.error {
+        border: 2px solid #800;
+    }
+    input.valid, textarea.valid {
+        border: 2px solid #080;
     }
 </style>
 </head>
@@ -51,7 +56,7 @@ include_once 'connect/connect.php';
 				<ul class="nav navbar-nav pull-right">
 					<li class="active"><a href="#">Головна</a></li>
 					<li><a href="about.php">Про сервіс</a></li>
-					<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Особистий кабінет</a></li>
+					<li><a href="#" >Особистий кабінет</a></li>
 					<li><a href="contact.php">Контакт</a></li>
 					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
 				</ul>
@@ -71,7 +76,7 @@ include_once 'connect/connect.php';
             <div class="row">
                 <h3 class="text-center">Швидкий пошук інфо професії</h3>
                 <div class="col-md-12 col-sm-12">
-                    <form method="POST" action="search.php">
+                    <form method="POST" action="search.php" id="search">
                         <div class="form-row align-items-center">
                             <div class="col-md-10 col-sm-12">
                                 <label class="sr-only" for="inlineFormInput">Name</label>
@@ -101,7 +106,6 @@ include_once 'connect/connect.php';
 	<?  include_once 'include/footer.php';  ?>
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	<script src="assets/js/headroom.min.js"></script>
 	<script src="assets/js/jQuery.headroom.min.js"></script>

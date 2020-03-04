@@ -22,7 +22,7 @@ include_once 'connect/connect.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Валидация формы -->
     <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="assets/js/form_signin.js"></script>
+    <script type="text/javascript" src="assets/js/form_signup.js"></script>
     <style>
         .error {  color: #800;  text-align: center;  }
         input.error, textarea.error {
@@ -41,7 +41,7 @@ include_once 'connect/connect.php';
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+				<a class="navbar-brand" href="index.php"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
@@ -63,7 +63,7 @@ include_once 'connect/connect.php';
 
 		<ol class="breadcrumb">
 			<li><a href="index.php">Головна</a></li>
-			<li class="active">Авторизація</li>
+			<li class="active">Зміна пароля </li>
 		</ol>
 
 		<div class="row">
@@ -71,34 +71,38 @@ include_once 'connect/connect.php';
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Авторизація</h1>
+					<h1 class="page-title">Зміна пароля</h1>
 				</header>
 				
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<h3 class="thin text-center">Увійдіть до свого облікового запису</h3>
-							<p class="text-center text-muted">Якщо немає облікового запису, Ви можете <a href="signup.php">зарєеструватися</a> на нашому ресурсі за декілька хвилин. </p>
+							<h3 class="thin text-center">Забули пароль?</h3>
+							<p class="text-center text-muted">Якщо забули пароль до облікового запису, введіть новіий пароль, або  <a href="signup.php">зарєеструйтися</a> на нашому ресурсі за декілька хвилин. </p>
 							<hr>
 							
 							<form id="myform" method="POST" action="#">
 								<div class="top-margin">
 									<label>Email <span class="text-danger">*</span></label>
-									<input type="text" class="form-control" name="email">
+									<input type="text" class="form-control" id="email" name="email" onBlur="checkAvailability();">
 								</div>
+                                <span id="user-email-status"></span>
 								<div class="top-margin">
 									<label>Пароль<span class="text-danger">*</span></label>
-									<input type="password" class="form-control" name="password">
+									<input type="password" class="form-control" name="password" id="password">
 								</div>
+                                <div class="top-margin">
+                                    <label>Повторити пароль<span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" name="password_second" id="password_second">
+                                </div>
 
 								<hr>
 
 								<div class="row">
 									<div class="col-lg-8">
-										<b><a href="change_password.php">Забули пароль?</a></b>
 									</div>
 									<div class="col-lg-4 text-center">
-										<button class="btn btn-action" type="submit">Увійти</button>
+										<button class="btn btn-action" type="submit" id="sbm" disabled="disabled">Змінити</button>
 									</div>
 								</div>
 							</form>
@@ -109,7 +113,23 @@ include_once 'connect/connect.php';
 				
 			</article>
 			<!-- /Article -->
+            <script>
+               function checkAvailability() {
+                    jQuery.ajax({
+                        url: "ajax/check_availability.php",
+                        data:'email='+$("#email").val(),
+                        type: "POST",
+                        success:function(data){
+                            $("#user-email-status").html(data);
+                            if($("#status").hasClass("text-success")){
+                                 $("#sbm").removeAttr("disabled");
 
+                            }
+
+                        },
+                    })
+                }
+            </script>
 		</div>
 	</div>	<!-- /container -->
     <?  include_once 'include/footer.php';  ?>
