@@ -20,6 +20,28 @@ include_once 'connect/connect.php';
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#chartContainer").CanvasJSChart({ //Pass chart options
+                data: [
+                    {
+                        type: "splineArea", //change it to column, spline, line, pie, etc
+                        dataPoints: [
+                            { x: 10, y: 10 },
+                            { x: 20, y: 14 },
+                            { x: 30, y: 18 },
+                            { x: 40, y: 22 },
+                            { x: 50, y: 18 },
+                            { x: 60, y: 28 }
+                        ]
+                    }
+                ]
+            });
+
+        });
+    </script>
 </head>
 
 <body>
@@ -81,10 +103,7 @@ include_once 'connect/connect.php';
 				<header class="page-header">
 					<h1 class="page-title">Lorem ipsum dolor sit amet, consectetur.</h1>
 				</header>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, itaque, cumque, maxime obcaecati reprehenderit ea dignissimos amet voluptatem id excepturi facilis totam veritatis maiores eveniet neque explicabo temporibus quisquam in ex ab fugiat ipsa tempore sunt corporis nostrum quam illum!</p>
-				<p>Consectetur cupiditate labore repudiandae beatae nisi fugiat facilis natus illum vitae doloremque. In, perspiciatis, natus, impedit voluptas itaque odio repudiandae placeat nisi totam repellendus earum dolores mollitia tempore quasi beatae alias cum dicta maxime laborum corporis harum porro magnam laboriosam.</p>
-				<p>Aut, eaque, minus atque alias odio mollitia cum nisi ipsa nulla natus quae minima similique ipsam aspernatur molestias animi in deleniti nam. Tempora, labore, modi eum perspiciatis doloremque sequi nam illo corporis iusto maiores nisi recusandae repellat animi reiciendis accusamus.</p>
-
+                <div id="chartContainer" style="width:100%; height:300px;"></div>
 				<h2>A, quibusdam, nobis, eveniet consequatur</h2>
 				<p>A, quibusdam, nobis, eveniet consequatur alias doloremque officia blanditiis fuga et numquam labore reiciendis voluptas quis repellat quos sunt non dolore consectetur at sit nam tenetur dolorem? Harum, quas, sit perspiciatis esse odit temporibus aperiam nulla aspernatur sequi fugiat tempore?</p>
 				<p>Ad velit consequuntur quo qui odit quam sapiente repudiandae et ea pariatur? Ex sapiente beatae nobis consectetur ea. Deleniti, beatae, magnam, dolorum, fuga nostrum quas laboriosam sapiente temporibus enim voluptates ullam impedit atque quae provident quos mollitia aperiam perferendis amet.</p>
