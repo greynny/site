@@ -15,8 +15,8 @@ if (!mysql_connect(DB_HOST, DB_USER, DB_PASS)) {
 if (!mysql_select_db(DB_NAME)) {
     exit('нет соединение с базой');
 }
-    $db = mysql_connect(DB_HOST,DB_USER, DB_PASS);
-    mysql_query("SET NAMES 'utf-8'");
-	mysql_select_db(DB_NAME,$db);
-    mysql_set_charset("windows-1251");
+   $db = mysql_connect(DB_HOST,DB_USER, DB_PASS);
+   mysql_select_db(DB_NAME,$db);
+   mysql_query("SET NAMES 'utf8' COLLATE 'utf8_general_ci'");
+   mysql_query("SET CHARACTER SET 'utf8'");
 ?>
