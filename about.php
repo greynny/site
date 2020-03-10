@@ -97,7 +97,7 @@ include_once 'connect/connect.php';
 					<h4>Це, Вас, може заікавити </h4>
 					<ul class="list-unstyled list-spaces">
 						<li><a href="educational.php">Навчальний заклад</a><br><span class="small text-muted">Перелік спеціальностей, та професій, які можна здобути в навчальному закладі</span></li>
-						<li><a href="search.php">Пошук професій</a><br><span class="small text-muted">Пошук спеціальностей, та професій, які можна здобути в навчальному заклад</span></li>
+						<li><a href="index.php">Пошук професій</a><br><span class="small text-muted">Пошук спеціальностей, та професій, які можна здобути в навчальному заклад</span></li>
 						<li><a href="">Особистий кабінет</a><br><span class="small text-muted">Повний перелік спеціальностей, та професій, які вибрав АБІТУРІЄНТ</span></li>
 						<li><a href="">Турнір професій</a><br><span class="small text-muted">Професії боряться за вибір АБІТУРІЄНТА.</span></li>
 					</ul>
