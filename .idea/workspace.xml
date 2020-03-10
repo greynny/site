@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1f039a-edf5-40cc-8cfa-62faa7dd7da3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/modal/modal_enrollee.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profession.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about.php" beforeDir="false" afterPath="$PROJECT_DIR$/about.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edu.php" beforeDir="false" afterPath="$PROJECT_DIR$/edu.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +79,7 @@
       <workItem from="1583305201749" duration="15138000" />
       <workItem from="1583385823351" duration="5339000" />
       <workItem from="1583480657400" duration="4787000" />
-      <workItem from="1583818036210" duration="23989000" />
+      <workItem from="1583818036210" duration="24231000" />
     </task>
     <task id="LOCAL-00001" summary="step 1">
       <created>1582899634682</created>
@@ -148,7 +144,21 @@
       <option name="project" value="LOCAL" />
       <updated>1583818070255</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="step 3">
+      <created>1583846536271</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1583846536272</updated>
+    </task>
+    <task id="LOCAL-00011" summary="step 4">
+      <created>1583846597572</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1583846597572</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,13 +168,14 @@
     <MESSAGE value="step 1" />
     <MESSAGE value="step 2" />
     <MESSAGE value="step 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="step 3" />
+    <MESSAGE value="step 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="step 4" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="115" key="CommitChangelistDialog2" timestamp="1583846534926">
+    <state x="585" y="115" key="CommitChangelistDialog2" timestamp="1583846596674">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="115" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1583846534926" />
+    <state x="585" y="115" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1583846596674" />
     <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1583129872064">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
