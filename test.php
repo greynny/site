@@ -152,7 +152,7 @@ else {
 	<div class="container">
 		<ol class="breadcrumb">
 			<li><a href="index.php">Головна</a></li>
-			<li class="active">Навчальний заклад</li>
+			<li class="active">Тестування</li>
 		</ol>
 
 		<div class="row">
@@ -281,7 +281,7 @@ else {
 			<!-- /Article -->
 
             <!-- Container -->
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     <article class="col-md-12 maincontent">
                         <table id="table_id" class="display">
