@@ -29,8 +29,7 @@ else {
      <!-- Графики и диаграмы -->
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-    <script src="assets/js/highcharts.js"></script>
-    <script src="assets/js/main.js"></script>
+
 
     <!-- Сортировка таблицы -->
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.dataTables.css">
@@ -147,176 +146,52 @@ else {
 	<!-- /.navbar -->
 
 	<header id="head" class="secondary"></header>
-
-	<!-- container -->
-	<div class="container">
-		<ol class="breadcrumb">
-			<li><a href="index.php">Головна</a></li>
-			<li class="active">Тестування</li>
-		</ol>
-
-		<div class="row">
-            <!-- Sidebar -->
-            <aside class="col-md-4 sidebar sidebar-left">
-
-                <div class="widget text-justify">
-                    <h4>Черкаський державний бізнес-коледж</h4>
-                    <ul class="list-unstyled list-spaces">
-                        <li id="tab1" style="cursor: pointer"><a>Конкурс абітурієнтів на базі базової середньої освіти</a><br><span class="small text-muted">Конкурс абітурієнтів на місця регіонального замовлення денної формі навчання за підсумками прийому в 2017-2019 роках на базі базової середньої освіти</span></li>
-                        <li id="tab2" style="cursor: pointer"><a>Конкурс абітурієнтів на базі повної середньої освіти</a><br><span class="small text-muted">Конкурс абітурієнтів на місця регіонального замовлення денної формі навчання за підсумками прийому в 2017-2019 роках на базі повної середньої освіти</span></li>
-                        <li id="tab3" style="cursor: pointer"><a>Конкурс абітурієнтів для здобуття ОС "Бакалавр"</a><br><span class="small text-muted">Конкурс абітурієнтів на місця регіонального замовлення денної формі навчання за підсумками прийому в 2018-2019 році на базі ОКР молодший спеціаліст для здобуття ОС "Бакалавр"</span></li>
-                        <li id="tab4" style="cursor: pointer"><a>Тест на профорієнтацію онлайн</a><br><span class="small text-muted">Щоб скоротити сферу пошуку майбутньої професії можна пройти тест на професійні інтереси. Після цього питання вибору професії підлітком перестане стояти руба. А ви готові дізнатися до якої категорії професійної діяльності більш схильні? Приступимо?</span></li>
-                        <li id="modal" style="cursor: pointer"><a>Рекламний ролік для АБІТУРІЄНТА</a><br><span class="small text-muted">Рекламний ролік для АБІТУРІЄНТА</span></li>
-                    </ul>
-                </div>
-
-            </aside>
-            <!-- /Sidebar -->
-
-			<!-- Article main content -->
-
-			<article class="col-md-8 maincontent">
-				<header class="page-header tab1">
-					<h4 class="page-title text-justify">Конкурс абітурієнтів на місця регіонального замовлення денної формі навчання за підсумками прийому в 2017-2019 роках на базі базової середньої освіти</h4>
-                <div id="chart_1" class="chart"></div>
-                </header>
-                <header class="page-header tab2" style="display: none">
-				    <!--*Згідно акту узгодження переліку спеціальностей, за якими здійснюється підготовка здобувачів вищої освіти за ОКР молодший спеціаліст-->
-                            <h4 class="page-title text-justify">Конкурс абітурієнтів на місця регіонального замовлення денної формі навчання за підсумками прийому в 2017-2019 роках на базі повної середньої освіти</h4>
-                            <div id="chart_2" class="chart"></div>
-                </header>
-                <header class="page-header tab3" style="display: none">
-                            <h4 class="page-title text-justify">Конкурс абітурієнтів на місця регіонального замовлення денної формі навчання за підсумками прийому в 2018-2019 році на базі ОКР молодший спеціаліст для здобуття ОС "Бакалавр"</h4>
-                            <div id="chart_3" class="chart"></div>
-                </header>
-                <script>
-                $('#tab1').click(function() {
-                    $('.tab2,.tab3,.tab4').css('display','none');
-                    $('.tab1').css('display','block')
-                });
-                $('#tab2').click(function() {
-                    $('.tab1,.tab3,.tab4').css('display','none');
-                    $('.tab2').css('display','block')
-                });
-                $('#tab3').click(function() {
-                    $('.tab2,.tab1,.tab4').css('display','none');
-                    $('.tab3').css('display','block')
-                });
-                $('#tab4').click(function() {
-                    $('.tab2,.tab1,.tab3').css('display','none');
-                    $('.tab4').css('display','block')
-                });
-                </script>
-                <header class="page-header tab4" style="display: none">
-                    <h4 class="page-title text-justify">Щоб скоротити сферу пошуку майбутньої професії можна пройти тест на професійні інтереси. Після цього питання вибору професії підлітком перестане стояти руба. А ви готові дізнатися до якої категорії професійної діяльності більш схильні? Приступимо?</h4>
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="counter">
-                            <div class="counter-content">
-                                <div class="counter-icon">
-                                    <i class="fa fa-laptop"></i>
-                                </div>
-                                <h5>Відділення «ІНФОРМАЦІЙНИХ ТЕХНОЛОГІЙ»</h5>
-                                <a href="test.php?educational=<? echo $educational?>" target="_blank" style="color: #fff; text-decoration: none"> <span class="counter-value">Тест</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="counter blue">
-                            <div class="counter-content">
-                                <div class="counter-icon">
-                                    <i class="fa fa-edit"></i>
-                                </div>
-                                <h5>Відділення «Дизайн»</h5>
-                                <a href="test.php?educational=<? echo $educational?>" target="_blank" style="color: #fff; text-decoration: none">  <span class="counter-value">Тест</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6">
-                        <div class="counter green">
-                            <div class="counter-content">
-                                <div class="counter-icon">
-                                    <i class="fa fa-credit-card"></i>
-                                </div>
-                                <h5>Кафедра економіки, підприємництва та маркетингу</h5>
-                                <a href="test.php?educational=<? echo $educational?>" target="_blank" style="color: #fff; text-decoration: none"> <span class="counter-value">Тест</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="counter orange">
-                            <div class="counter-content">
-                                <div class="counter-icon">
-                                    <i class="fa fa-users"></i>
-                                </div>
-                                <h5>Відділення «ПІДПРИЄМНИЦТВА ТА МАРКЕТИНГУ»</h5>
-                                <a href="test.php?educational=<? echo $educational?>" target="_blank" style="color: #fff; text-decoration: none">  <span class="counter-value">Тест</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="counter">
-                            <div class="counter-content">
-                                <div class="counter-icon">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                                </div>
-                                <h5>Кафедра обліку та фінансів</h5>
-                                <a href="test.php?educational=<? echo $educational?>" target="_blank" style="color: #fff; text-decoration: none">  <span class="counter-value">Тест</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </header>
-              </article>
-
-        </div>
-        <hr>
-    </div>
-			<!-- /Article -->
-
-            <!-- Container -->
+      <!-- Container -->
             <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="index.php">Головна</a></li>
+                    <li class="active">Тестування</li>
+                </ol>
+                <hr>
                 <div class="row">
+                    <?
+                    $sql = mysql_query("SELECT * FROM `educational` WHERE `id` = $educational" );
+                    $myrow = mysql_fetch_array($sql);
+                    ?>
                     <article class="col-md-12 maincontent">
+                        <h2>Тест на профорієнтацію онлайн <a href="edu.php?educational=<? echo $myrow[id] ?>" target="_blank"><? echo $myrow[educational] ?></a> </h2>
+
+                        <blockquote>Щоб скоротити сферу пошуку майбутньої професії можна пройти тест на професійні інтереси. Після цього питання вибору професії підлітком перестане стояти руба. А ви готові дізнатися до якої категорії професійної діяльності більш схильні?
+                            <p class="text-danger">На проходження кожного тесту дається тільки одна спроба! Радимо уважно читати питання до тестів.</p> Приступимо?</blockquote>
+
                         <table id="table_id" class="display">
                             <thead>
                             <tr>
-                                <th class="text-center">№</th>
+
                                 <th class="text-center">Спеціальність</th>
-                                <th class="text-center">Професія</th>
-                                <th class="text-center">Освітній рівень</th>
-                                <th class="text-center">URL спеціальності</th>
+                                <th class="text-center">Назва теста</th>
+
                             </tr>
                             </thead>
                             <tbody>
                             <?
-                            $sql = mysql_query("SELECT * FROM `specialty` WHERE `educational` =  $educational");
-                            $myrow = mysql_fetch_array($sql);
-                            $i = 1;
-                            do {
-                                $sql1 = mysql_query("SELECT * FROM `employment` WHERE `educational` =  $educational AND `specialty` = $myrow[id]");
-                                 $myrow1 = mysql_fetch_array($sql1);
-                                printf(' <tr>
-                                                    <td class="text-center">%s</td>
-                                                    <td class="text-justify">%s</td>
-                                                    <td class="text-justify">',$i,$myrow[specialty]);
-                                        do {
-                                            printf('<li><a href="profession.php?profession=%s" target="_blank">%s</a> </li>',$myrow1[id],$myrow1[employment]);
-                                        }
-                                        while($myrow1 = mysql_fetch_array($sql1));
-                        printf('</td>
-                        <td class="text-justify">%s</td>
-                        <td class="text-justify"><a href="%s" target="_blank">Перейти</a></td>
-                    </tr>',$myrow[level],$myrow[url]);
-                            $i++;
-                            }
-                            while($myrow = mysql_fetch_array($sql));
+                                $query = mysql_query("SELECT * FROM `specialty` WHERE `educational` = $educational ");
+                                $row = mysql_fetch_array($query);
+                                 do {
+                                     $q =  mysql_query("SELECT * FROM `test` WHERE `id_educational` = $educational  && `id_specialty` = $row[id]");
+                                     $r = mysql_fetch_array($q);
+                                     if($r[test_name]!='') {
+                                         printf('<tr>
+                                                        <td class="text-justify">%s</td>
+                                                        <td class="text-justify">', $row[specialty]);
+                                         do {
+                                             printf('<li><a href="testing.php?educational=%s&test=%s"> %s (%s)</a></li>',$educational, $r[id], $r[test_name], $r[test_title]);
+                                         } while ($r = mysql_fetch_array($q));
+                                         printf('    </td>
+                                                    </tr>');
+                                     }
+                                     }
+                                 while ($row = mysql_fetch_array($query));
                             ?>
                             </tbody>
                         </table>
