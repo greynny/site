@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'connect/connect.php';
+include_once 'user/del_coockie.php';
 if (isset($_GET['educational'])){
     $educational =$_GET['educational'];
 }
@@ -135,11 +136,25 @@ else {
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="index.php">Головна</a></li>
+                    <?
+
+                    if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                        echo '
+                    <li><a href="index.php">Головна</a></li>
 					<li><a href="about.php">Про сервіс</a></li>
-					<li><a href="#">Особистий кабінет</a></li>
+					<li><a href="user.php">Особистий кабінет</a></li>
 					<li><a href="contact.php">Контакт</a></li>
-					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
+					<li><a class="btn" href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="index.php">Головна</a></li>
+					<li><a href="about.php">Про сервіс</a></li>
+					<li><a href="#" >Особистий кабінет</a></li>
+					<li><a href="contact.php">Контакт</a></li>
+					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>';
+                    }
+
+                    ?>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

@@ -1,8 +1,9 @@
 <?php
 session_start();
 include_once 'connect/connect.php';
+include_once 'user/del_coockie.php';
 if (isset($_GET['profession'])){
-    $profession =$_GET['profession'];
+    $profession = (int)$_GET['profession'];
 }
 else {
     $profession = 1;
@@ -27,7 +28,9 @@ $myrow = mysql_fetch_array($sql);
 	<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
+
 	<![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -37,15 +40,29 @@ $myrow = mysql_fetch_array($sql);
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+				<a class="navbar-brand" href="index.php"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href="index.php">Головна</a></li>
-                    <li><a href="about.php">Про сервіс</a></li>
-                    <li><a href="#">Особистий кабінет</a></li>
-                    <li><a href="contact.php">Контакт</a></li>
-                    <li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
+                    <?
+                    if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                            echo '
+                        <li><a href="index.php">Головна</a></li>
+                        <li><a href="about.php">Про сервіс</a></li>
+                        <li><a href="user.php">Особистий кабінет</a></li>
+                        <li><a href="contact.php">Контакт</a></li>
+                        <li><a class="btn" href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a></li>';
+                        }
+                     else {
+                            echo '<li><a href="index.php">Головна</a></li>
+                        <li><a href="about.php">Про сервіс</a></li>
+                        <li><a href="#" >Особистий кабінет</a></li>
+                        <li><a href="contact.php">Контакт</a></li>
+                        <li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>';
+                        }
+
+                    ?>
+
                 </ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -70,7 +87,38 @@ $myrow = mysql_fetch_array($sql);
 					<div class="col-xs-12">
 						<h4><? echo $myrow["employment"] ?></h4>
 						<p><img src="assets/images/pr/<? echo $myrow[educational]?>_<? echo $myrow[specialty]?>_<? echo $myrow[id]?>.jpg" alt=""></p>
-						<a href="#">Зберегти професію в особистому кабінеті для подальшого вивчення</a>
+                        <?
+                        if((isset($_COOKIE["id"])) && (!empty($_COOKIE["id"]))){
+                            $sql = mysql_query("SELECT * FROM `user_choice` WHERE `id_user` = $_COOKIE[id] && `id_employment` = $profession && `choice` = '1'");
+                            if (mysql_num_rows($sql) == '0') {
+                             echo '<a id="submit" style="cursor: pointer">  <span class="fa-stack fa-lg">
+                                    <i class="fa fa-square-o fa-stack-2x"></i>
+                                    <i class="fa fa-star-o   fa-stack-1x" ></i>
+                                        </span>Зберегти професію в особистому кабінеті для подальшого вивчення</a>';
+                                }
+                            else {
+                                echo '<a id="submit_delete" style="cursor: pointer">  <span class="fa-stack fa-lg">
+                                    <i class="fa fa-square-o fa-stack-2x"></i>
+                                    <i class="fa fa-star-o   fa-stack-1x bg-warning" ></i>
+                                        </span>Видалити професію з особистого кабінета</a>';
+                            }
+                        }
+                        ?>
+
+                        <form id="addform" method="POST" action="user/add_profession.php" hidden>
+                            <input type="text" name="employment" value="<? echo $profession ?>" >
+                        </form>
+                        <form id="delform" method="POST" action="user/del_profession.php" hidden>
+                            <input type="text" name="del_employment" value="<? echo $profession ?>" >
+                        </form>
+                        <script>
+                            $("#submit").click(function(){
+                                    $("#addform").submit();
+                                });
+                            $("#submit_delete").click(function(){
+                                $("#delform").submit();
+                            });
+                          </script>
 					</div>
 				</div>
 
@@ -97,5 +145,6 @@ $myrow = mysql_fetch_array($sql);
     <script src="assets/js/headroom.min.js"></script>
     <script src="assets/js/jQuery.headroom.min.js"></script>
     <script src="assets/js/template.js"></script>
+
 </body>
 </html>

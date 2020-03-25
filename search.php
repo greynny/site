@@ -1,6 +1,9 @@
 <?php
 session_start();
 include_once 'connect/connect.php';
+include_once 'user/del_coockie.php';
+mb_internal_encoding('UTF-8');
+$search = str_replace(" ", "", mb_strtolower(htmlspecialchars(mysql_real_escape_string(trim($_POST['query'])))));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,11 +74,25 @@ include_once 'connect/connect.php';
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="index.php">Головна</a></li>
+                    <?
+
+                    if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                        echo '
+                    <li><a href="index.php">Головна</a></li>
 					<li><a href="about.php">Про сервіс</a></li>
-					<li><a href="#">Особистий кабінет</a></li>
+					<li><a href="user.php">Особистий кабінет</a></li>
 					<li><a href="contact.php">Контакт</a></li>
-					<li><a class="btn" href="signin.php"> Авторизація / Реєстрація</a></li>
+					<li><a class="btn" href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="index.php">Головна</a></li>
+					<li><a href="about.php">Про сервіс</a></li>
+					<li><a href="#" >Особистий кабінет</a></li>
+					<li><a href="contact.php">Контакт</a></li>
+					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>';
+                    }
+
+                    ?>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -113,157 +130,72 @@ include_once 'connect/connect.php';
                         </div>
                     </form>
                 </div>
-                <h4 class="text-center" style="margin-top: 80px">Розширений пошук</h4>
-                <div class="col-md-2 col-sm-2">
-                </div>
-                <div class="col-md-8 col-sm-8">
-                    <ul>
-                        <li>за алфавітом (А ... Я)</li>
-                        <li>за напрямами (бухгалтерія, юриспруденція, інженерія, тощо)</li>
-                        <li>по галузях (ІТ, фінанси, авіабудування, металургія, тощо)</li>
-                    </ul>
-                </div>
-                <div class="col-md-2 col-sm-2">
-                </div>
+                <?
+                if ((isset($search)) && (!empty($search))){
+                $query = mysql_query("SELECT * FROM `employment` WHERE `employment` LIKE '%$search%'");
+                $result = mysql_fetch_array($query);
+                    if (mysql_num_rows($query) == '0') {
+                        $error = '<div class="alert alert-danger alert-dismissible" role="alert" id="error">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        Жодного запису по запиту "...'.$search.'..." не знайдено! 
+                    </div>';
+                    }
+                    else {
+                        $text = '<div class="alert alert-success alert-dismissible" role="alert" >
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        По вашому запиту "...'.$search.'..." знайдено '.mysql_num_rows($query).' записа(ів)! 
+                    </div>';
+                    }
+                }
+                ?>
+
             </article>
+
 			<!-- /Article -->
 		</div>
 	</div>	<!-- /container -->
-    <div class="container">
+
+    <hr>
+    <div class="container-fluid">
         <div class="row">
             <article class="col-md-12 maincontent">
+                <? echo $error, $text ?>
                 <table id="table_id" class="display">
                     <thead>
                     <tr>
-                        <th>имя</th>
-                        <th>фамилия</th>
-                        <th>возраст</th>
-                        <th>итого</th>
-                        <th>скидка</th>
-                        <th>дата</th>
+                        <th>№</th>
+                        <th>Професія</th>
+                        <th>Навчальний заклад</th>
+                        <th>Спеціальність</th>
+                        <th>Освітній рівень</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>петр</td>
-                        <td>сидоров</td>
-                        <td>28</td>
-                        <td>$9.99</td>
-                        <td>20%</td>
-                        <td>jul 6, 2006 8:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>иван</td>
-                        <td>хайкин</td>
-                        <td>33</td>
-                        <td>$19.99</td>
-                        <td>25%</td>
-                        <td>dec 10, 2002 5:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>николай</td>
-                        <td>котов</td>
-                        <td>18</td>
-                        <td>$15.89</td>
-                        <td>44%</td>
-                        <td>jan 12, 2003 11:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>борис</td>
-                        <td>арнов</td>
-                        <td>45</td>
-                        <td>$153.19</td>
-                        <td>44%</td>
-                        <td>jan 18, 2001 9:12 am</td>
-                    </tr>
-                    <tr>
-                        <td>борис</td>
-                        <td>егоров</td>
-                        <td>22</td>
-                        <td>$13.19</td>
-                        <td>11%</td>
-                        <td>jan 18, 2007 9:12 am</td>
-                    </tr>
-                    <tr>
-                        <td>петр</td>
-                        <td>сидоров</td>
-                        <td>28</td>
-                        <td>$9.99</td>
-                        <td>20%</td>
-                        <td>jul 6, 2006 8:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>иван</td>
-                        <td>хайкин</td>
-                        <td>33</td>
-                        <td>$19.99</td>
-                        <td>25%</td>
-                        <td>dec 10, 2002 5:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>николай</td>
-                        <td>котов</td>
-                        <td>18</td>
-                        <td>$15.89</td>
-                        <td>44%</td>
-                        <td>jan 12, 2003 11:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>борис</td>
-                        <td>арнов</td>
-                        <td>45</td>
-                        <td>$153.19</td>
-                        <td>44%</td>
-                        <td>jan 18, 2001 9:12 am</td>
-                    </tr>
-                    <tr>
-                        <td>борис</td>
-                        <td>егоров</td>
-                        <td>22</td>
-                        <td>$13.19</td>
-                        <td>11%</td>
-                        <td>jan 18, 2007 9:12 am</td>
-                    </tr>
-                    <tr>
-                        <td>петр</td>
-                        <td>сидоров</td>
-                        <td>28</td>
-                        <td>$9.99</td>
-                        <td>20%</td>
-                        <td>jul 6, 2006 8:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>иван</td>
-                        <td>хайкин</td>
-                        <td>33</td>
-                        <td>$19.99</td>
-                        <td>25%</td>
-                        <td>dec 10, 2002 5:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>николай</td>
-                        <td>котов</td>
-                        <td>18</td>
-                        <td>$15.89</td>
-                        <td>44%</td>
-                        <td>jan 12, 2003 11:14 am</td>
-                    </tr>
-                    <tr>
-                        <td>борис</td>
-                        <td>арнов</td>
-                        <td>45</td>
-                        <td>$153.19</td>
-                        <td>44%</td>
-                        <td>jan 18, 2001 9:12 am</td>
-                    </tr>
-                    <tr>
-                        <td>борис</td>
-                        <td>егоров</td>
-                        <td>22</td>
-                        <td>$13.19</td>
-                        <td>11%</td>
-                        <td>jan 18, 2007 9:12 am</td>
-                    </tr>
+                    <?
+                        $query = mysql_query("SELECT * FROM `employment` WHERE `employment` LIKE '%$search%'");
+                        $result = mysql_fetch_array($query);
+                    if (mysql_num_rows($query) !=0) {
+                        $i = 1;
+                        do {
+                            $query1 = mysql_query("SELECT * FROM `educational` WHERE `id` = $result[educational]");
+                            $result1 = mysql_fetch_array($query1);
+                            $query2 = mysql_query("SELECT * FROM `specialty` WHERE `id` = $result[specialty]");
+                            $result2 = mysql_fetch_array($query2);
+                            printf('<tr>
+                                            <td>%s</td>
+                                            <td><a href="profession.php?profession=%s" target="_blank">%s</a></td>
+                                            <td><a href="edu.php?educational=%s" target="_blank">%s</a></td>
+                                            <td>%s</td>
+                                            <td>%s</td>
+                                        </tr>', $i, $result[id], mb_strtoupper($result[employment]), $result1[id], $result1[educational], $result2[specialty], $result2[level]);
+                            $i++;
+                        } while ($result = mysql_fetch_array($query));
+                    }
+                    ?>
+
+
                     </tbody>
                 </table>
             </article>
@@ -274,6 +206,11 @@ include_once 'connect/connect.php';
         $(document).ready( function () {
             $('#table_id').DataTable();
         } );
+    </script>
+    <script>
+        $("#error").show(function () {
+            setTimeout(function(){ $('#error').hide(); }, 10000)
+        });
     </script>
     <?  include_once 'include/footer.php';  ?>
 

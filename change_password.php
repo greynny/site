@@ -81,7 +81,7 @@ include_once 'connect/connect.php';
 							<p class="text-center text-muted">Якщо забули пароль до облікового запису, введіть новіий пароль, або  <a href="signup.php">зарєеструйтися</a> на нашому ресурсі за декілька хвилин. </p>
 							<hr>
 							
-							<form id="myform" method="POST" action="#">
+							<form id="myform" method="POST" action="user/change_password.php">
 								<div class="top-margin">
 									<label>Email <span class="text-danger">*</span></label>
 									<input type="text" class="form-control" id="email" name="email" onBlur="checkAvailability();">

@@ -42,11 +42,23 @@
                 <div class="col-md-6 widget">
                     <div class="widget-body">
                         <p class="simplenav">
+                            <?
+                            if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                            echo '
                             <a href="index.php">Головна</a> |
                             <a href="about.php">Про сервіс</a> |
-                            <a href="">Особистий кабінет</a> |
+                            <a href="user.php">Особистий кабінет</a> |
                             <a href="contact.php">Контакт</a> |
-                            <b><a href="signin.php">Авторизація / Реєстрація</a></b>
+                            <a  href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a>';
+                        }
+                        else {
+                        echo '<a href="index.php">Головна</a> |
+                            <a href="about.php">Про сервіс</a> |
+                            <a href="#">Особистий кабінет</a> |
+                            <a href="contact.php">Контакт</a> |
+                            <b><a href="signin.php">Авторизація / Реєстрація</a></b>';
+                        }
+                        ?>
                         </p>
                     </div>
                 </div>

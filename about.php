@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'connect/connect.php';
+include_once 'user/del_coockie.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,15 +29,29 @@ include_once 'connect/connect.php';
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+				<a class="navbar-brand" href="index.php"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="index.php">Головна</a></li>
-					<li class="active"><a href="about.php">Про сервіс</a></li>
-					<li><a href="#">Особистий кабінет</a></li>
+                    <?
+
+                    if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                        echo '
+                    <li><a href="index.php">Головна</a></li>
+					<li><a href="about.php">Про сервіс</a></li>
+					<li><a href="user.php">Особистий кабінет</a></li>
 					<li><a href="contact.php">Контакт</a></li>
-					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
+					<li><a class="btn" href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="index.php">Головна</a></li>
+					<li><a href="about.php">Про сервіс</a></li>
+					<li><a href="#" >Особистий кабінет</a></li>
+					<li><a href="contact.php">Контакт</a></li>
+					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>';
+                    }
+
+                    ?>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -97,9 +112,17 @@ include_once 'connect/connect.php';
 					<h4>Це, Вас, може заікавити </h4>
 					<ul class="list-unstyled list-spaces">
 						<li><a href="educational.php">Навчальний заклад</a><br><span class="small text-muted">Перелік спеціальностей, та професій, які можна здобути в навчальному закладі</span></li>
-						<li><a href="index.php">Пошук професій</a><br><span class="small text-muted">Пошук спеціальностей, та професій, які можна здобути в навчальному заклад</span></li>
-						<li><a href="">Особистий кабінет</a><br><span class="small text-muted">Повний перелік спеціальностей, та професій, які вибрав АБІТУРІЄНТ</span></li>
-						<li><a href="">Турнір професій</a><br><span class="small text-muted">Професії боряться за вибір АБІТУРІЄНТА.</span></li>
+						<li><a href="search.php">Пошук професій</a><br><span class="small text-muted">Пошук спеціальностей, та професій, які можна здобути в навчальному заклад</span></li>
+                        <?
+                            if ((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                                echo '<li><a href="user.php">Особистий кабінет</a><br><span class="small text-muted">Повний перелік спеціальностей, та професій, які вибрав АБІТУРІЄНТ</span></li>
+						              <li><a href="ring.php">Турнір професій</a><br><span class="small text-muted">Професії боряться за вибір АБІТУРІЄНТА.</span></li>';
+                            }
+                            else {
+                                echo '<li><a href="#">Особистий кабінет</a><br><span class="small text-muted">Повний перелік спеціальностей, та професій, які вибрав АБІТУРІЄНТ</span></li>
+						              <li><a href="#">Турнір професій</a><br><span class="small text-muted">Професії боряться за вибір АБІТУРІЄНТА.</span></li>';
+                            }
+                        ?>
 					</ul>
 				</div>
 

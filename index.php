@@ -1,11 +1,13 @@
 <?php
 session_start();
 include_once 'connect/connect.php';
+include_once 'user/del_coockie.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<? include_once 'include/meta.php';?>
+    
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -54,11 +56,26 @@ include_once 'connect/connect.php';
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="#">Головна</a></li>
+                    <?
+
+                    if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                        echo '
+                    <li class="active"><a href="#">Головна</a></li>
+					<li><a href="about.php">Про сервіс</a></li>
+					<li><a href="user.php">Особистий кабінет</a></li>
+					<li><a href="contact.php">Контакт</a></li>
+					<li><a class="btn" href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a></li>';
+                    }
+                    else {
+                        echo '<li class="active"><a href="#">Головна</a></li>
 					<li><a href="about.php">Про сервіс</a></li>
 					<li><a href="#" >Особистий кабінет</a></li>
 					<li><a href="contact.php">Контакт</a></li>
-					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
+					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>';
+                    }
+
+                    ?>
+
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

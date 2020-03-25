@@ -1,6 +1,10 @@
 <?php
 session_start();
 include_once 'connect/connect.php';
+if (isset($_GET['test'])){
+    $test = (int)$_GET['test'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +45,7 @@ include_once 'connect/connect.php';
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+				<a class="navbar-brand" href="index.php"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
@@ -70,10 +74,35 @@ include_once 'connect/connect.php';
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title"><? print_r($_POST); ?></h1>
+                    <? $query = mysql_query("SELECT * FROM `test` WHERE `id` = $test");
+                        $myrow = mysql_fetch_array($query);
+                    ?>
+					<h1 class="page-title"><? echo $myrow[test_name]; ?></h1>
+                    <blockquote><? echo $myrow[test_title]; ?></blockquote>
+
+                    <?
+                    $result=0;
+                    foreach ($_POST as $key => $value) {
+                        $sql = mysql_query("SELECT * FROM `test_answer` WHERE `correct_answer` = 1 && `id` = $value");
+                             if(mysql_num_rows($sql)==1){
+                                    $result++;
+                                }
+                       }
+                    echo '<h3>За результами теста Ви набрали - <span class=" text-danger">'.$result.' бал/(балів)</span></h3>';
+                    ?>
+                    <blockquote><? echo $myrow[result]; ?></blockquote>
 				</header>
-				
-				
+
+				<?  echo '<div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            Дані занесено до бази. Через 30 секунд Вас буде перенаправлено на початкову сторінку, або перейдіть за <a href = "edu.php?educational='.$myrow[id_educational].'">посиланням</a>
+                        </div>';
+                echo '<script language = \'javascript\'>
+                          var delay = 30000;
+                          setTimeout("document.location.href=\'edu.php?educational='.$myrow[id_educational].'\'", delay);
+                        </script>';
+                ?>
 				
 			</article>
 			<!-- /Article -->

@@ -2,7 +2,7 @@
 session_start();
 include_once 'connect/connect.php';
 if (isset($_GET['test'])){
-    $test = $_GET['test'];
+    $test = (int)$_GET['test'];
 }
 else {
      $test = 1;
@@ -63,7 +63,7 @@ else {
                 </ol>
                 <hr>
                 <div class="row">
-                    <form method="POST" action="check.php" id="myform">
+                    <form method="POST" action="check.php?test=<? echo $test ?>" id="myform">
                     <? $sql = mysql_query("SELECT * FROM `test` WHERE `id` = $test");
                         $myrow = mysql_fetch_array($sql);
                     printf('<article class="col-md-12 maincontent">
@@ -81,11 +81,11 @@ else {
                                     printf(' <div class="container" style="margin-left: 30px">
                                                         <div class="input-group">
                                                             <span class="input-group-addon" style="background-color:#ffc107; ">
-                                                                <input type="radio" name="question%s" value="%s">
+                                                                <input type="radio" name="question%s" value="%s" required>
                                                             </span>
                                                             <label class="form-control">%s
                                                         </div>
-                                                    </div>',$row[id],$r[answer],$r[answer]);
+                                                    </div>',$row[id],$r[id],$r[answer]);
                                 }
                                 while($r = mysql_fetch_array($q));
 

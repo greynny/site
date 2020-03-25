@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'connect/connect.php';
+include_once 'user/signin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +42,7 @@ include_once 'connect/connect.php';
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
+				<a class="navbar-brand" href="index.php"><img src="assets/images/logo.png" alt="Progressus HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
@@ -73,7 +74,7 @@ include_once 'connect/connect.php';
 				<header class="page-header">
 					<h1 class="page-title">Авторизація</h1>
 				</header>
-				
+                <? echo $text ?>
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-body">
@@ -81,7 +82,7 @@ include_once 'connect/connect.php';
 							<p class="text-center text-muted">Якщо немає облікового запису, Ви можете <a href="signup.php">зарєеструватися</a> на нашому ресурсі за декілька хвилин. </p>
 							<hr>
 							
-							<form id="myform" method="POST" action="#">
+							<form id="myform" method="POST" action="">
 								<div class="top-margin">
 									<label>Email <span class="text-danger">*</span></label>
 									<input type="text" class="form-control" name="email">
@@ -98,7 +99,7 @@ include_once 'connect/connect.php';
 										<b><a href="change_password.php">Забули пароль?</a></b>
 									</div>
 									<div class="col-lg-4 text-center">
-										<button class="btn btn-action" type="submit">Увійти</button>
+										<button class="btn btn-action" type="submit" name="do_login">Увійти</button>
 									</div>
 								</div>
 							</form>

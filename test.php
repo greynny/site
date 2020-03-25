@@ -167,10 +167,8 @@ else {
                         <table id="table_id" class="display">
                             <thead>
                             <tr>
-
                                 <th class="text-center">Спеціальність</th>
                                 <th class="text-center">Назва теста</th>
-
                             </tr>
                             </thead>
                             <tbody>
