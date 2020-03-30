@@ -295,13 +295,18 @@ include_once 'user/del_coockie.php';
                     <hr>
                     <?
                         if(mysql_num_rows($sql) >= 2) {
-                            echo '<button type="button" class="btn btn-success col-lg-12">Розпочати турнір професій</button>';
+                            echo '<button type="button" class="btn btn-success col-lg-12" id="ring">Розпочати турнір професій</button>';
                         }
                         else {
                             echo '<button type="button" class="btn btn-success col-lg-12" disabled>Розпочати турнір професій</button>';
                         }
                     ?>
-
+                    <script>
+                        $('#ring').click(function (){
+                            var url = "ring.php";
+                            $(location).attr('href',url);
+                        });
+                    </script>
                 </header>
                 <header class="page-header tab3" style="display: none">
                             <h4 class="page-title text-justify">Результати тестування</h4>

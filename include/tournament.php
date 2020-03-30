@@ -57,7 +57,7 @@
                         </ul>
                         <?
                         if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))) {
-                            echo '<a target="_blank" href = "user/index.php" class="pricingTable-signup" data-toggle = "tooltip" data-placement = "top" title = "Перехід в особистий кабінет"> Перейти</a>';
+                            echo '<a target="_blank" href = "user.php" class="pricingTable-signup" data-toggle = "tooltip" data-placement = "top" title = "Перехід в особистий кабінет"> Перейти</a>';
                         }
                         else {
                             echo '<a href = "#" class="pricingTable-signup" data-toggle = "tooltip" data-placement = "top" title = "Необхідно зареєструватися"> Перейти</a>';
