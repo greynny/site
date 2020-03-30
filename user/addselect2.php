@@ -9,17 +9,17 @@ $result = mysql_fetch_array($sql);
         </div>
         <hr>
         <div class="mt-3 text-center">
-            <i class="fa fa-star-o fa-3x fa-stack btn-warning"   title="Знаходиться в улюбленних"></i>
-            <i class="fa fa-files-o  fa-3x fa-stack btn-success" id="modal1_1"   title="Карточка професії"></i>
-            <i class="fa fa-question-circle fa-3x fa-stack btn-info"  id="modal1_2"  title="Мастер самопізнання"></i>
             <i class="fa fa-times-circle fa-3x fa-stack btn-danger" id="submit_delete_'.$_POST[id].'"   title="Відправити професію в &ldquo;БАН&rdquo;"></i>
-        </div>
+            <i class="fa fa-question-circle fa-3x fa-stack btn-info"  id="modal2_2"  title="Мастер самопізнання"></i>
+            <i class="fa fa-files-o  fa-3x fa-stack btn-success" id="modal2_1"   title="Карточка професії"></i>
+            <i class="fa fa-star-o fa-3x fa-stack btn-warning"   title="Знаходиться в улюбленних"></i>
+         </div>
         <script>
-             $("#modal1_1").on("click", function(){
-                $("#exampleModal1_1").arcticmodal();
+             $("#modal2_1").on("click", function(){
+                $("#exampleModal2_1").arcticmodal();
             });
-             $("#modal1_2").on("click", function(){
-                $("#exampleModal1_2").arcticmodal();
+             $("#modal2_2").on("click", function(){
+                $("#exampleModal2_2").arcticmodal();
             });
              $("#submit_delete_'.$_POST[id].'").click(function(){
                $.ajax({
@@ -34,11 +34,11 @@ $result = mysql_fetch_array($sql);
                 });
                 </script>     
 			<div class="g-hidden">
-				<div class="box-modal" id="exampleModal1_2">
+				<div class="box-modal" id="exampleModal2_2">
 					<div class="box-modal_close arcticmodal-close">X</div>
 					'.$result[question].'
 				</div>
-				<div class="box-modal" id="exampleModal1_1">
+				<div class="box-modal" id="exampleModal2_1">
 					<div class="box-modal_close arcticmodal-close">X</div>
 					'.$result[about].'
 				</div>

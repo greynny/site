@@ -22,6 +22,7 @@ mb_internal_encoding('UTF-8');
     <script src="assets/js/html5shiv.js"></script>
     <script src="assets/js/respond.min.js"></script>
     <![endif]-->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Валидация формы -->
     <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
@@ -30,6 +31,21 @@ mb_internal_encoding('UTF-8');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <style>
+        .box-modal {
+            position: relative;
+            width: 500px;
+            padding: 16px;
+            background: #fff;
+            color: #3c3c3c;
+            font: 14px/18px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+            box-shadow: 0 0 0 6px rgba(153, 153, 153, .3);
+            border-radius: 6px;
+        }
+        .box-modal_close { position: absolute; right: 10px; top: 6px; font-size: 11px; line-height: 15px; color: #999; cursor: pointer; }
+        .box-modal_close:hover { color: #666; }
+        .g-hidden { display: none; }
+        .g-line { zoom: 1; }
+        .g-line:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 
         .thumb{
             border: 1px solid #ccc;
@@ -46,6 +62,9 @@ mb_internal_encoding('UTF-8');
             border: 2px solid #080;
         }
     </style>
+    <!-- arcticModal -->
+    <script src="assets/js/jquery.arcticmodal.js"></script>
+    <link rel="stylesheet" href="assets/css/jquery.arcticmodal.css">
 </head>
 
 <body>
@@ -60,11 +79,25 @@ mb_internal_encoding('UTF-8');
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="index.php">Головна</a></li>
+                    <?
+
+                    if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                        echo '
+                    <li><a href="index.php">Головна</a></li>
 					<li><a href="about.php">Про сервіс</a></li>
-					<li><a href="#">Особистий кабінет</a></li>
+					<li><a href="user.php">Особистий кабінет</a></li>
 					<li><a href="contact.php">Контакт</a></li>
-					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
+					<li><a class="btn" href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="index.php">Головна</a></li>
+					<li><a href="about.php">Про сервіс</a></li>
+					<li><a href="#" >Особистий кабінет</a></li>
+					<li><a href="contact.php">Контакт</a></li>
+					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>';
+                    }
+
+                    ?>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -214,7 +247,14 @@ mb_internal_encoding('UTF-8');
                     var value = $('#select2 option:selected').text();
                     $('#select1 option:contains(' + value + ')').remove();
                     $('#text2').html(value);
-
+                    jQuery.ajax({
+                        type: 'POST',
+                        url: 'user/addselect2.php',
+                        data: 'id='+$('#select2').val(),
+                        success: function(data) {
+                            $('#selprof2').html(data);
+                        }
+                    });
                 });
             </script>
 			<!-- /container -->
