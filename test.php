@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'connect/connect.php';
+include_once 'user/del_coockie.php';
 if (isset($_GET['educational'])){
     $educational =$_GET['educational'];
 }
@@ -134,11 +135,25 @@ else {
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="index.php">Головна</a></li>
+                    <?
+
+                    if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                        echo '
+                    <li class="active"><a href="#">Головна</a></li>
 					<li><a href="about.php">Про сервіс</a></li>
-					<li><a href="#">Особистий кабінет</a></li>
+					<li><a href="user.php">Особистий кабінет</a></li>
 					<li><a href="contact.php">Контакт</a></li>
-					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
+					<li><a class="btn" href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a></li>';
+                    }
+                    else {
+                        echo '<li class="active"><a href="#">Головна</a></li>
+					<li><a href="about.php">Про сервіс</a></li>
+					<li><a href="#" >Особистий кабінет</a></li>
+					<li><a href="contact.php">Контакт</a></li>
+					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>';
+                    }
+
+                    ?>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -167,29 +182,39 @@ else {
                         <table id="table_id" class="display">
                             <thead>
                             <tr>
-                                <th class="text-center">Спеціальність</th>
                                 <th class="text-center">Назва теста</th>
+                                <th class="text-center">Спеціальність</th>
+                                <th class="text-center">Відмітка про проходження теста</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?
-                                $query = mysql_query("SELECT * FROM `specialty` WHERE `educational` = $educational ");
-                                $row = mysql_fetch_array($query);
-                                 do {
-                                     $q =  mysql_query("SELECT * FROM `test` WHERE `id_educational` = $educational  && `id_specialty` = $row[id]");
-                                     $r = mysql_fetch_array($q);
-                                     if($r[test_name]!='') {
-                                         printf('<tr>
+                               $sql = mysql_query("SELECT * FROM `test` WHERE `id_educational` = $educational");
+                               $myrow = mysql_fetch_array($sql);
+                               do {
+                                   $sql1 = mysql_query("SELECT * FROM `specialty` WHERE `id` = $myrow[id_specialty]");
+                                   $myrow1 = mysql_fetch_array($sql1);
+                                   if(mysql_num_rows($sql1) != 0){
+                                           $sql2 = mysql_query("SELECT * FROM `test_result` WHERE `id_test` = $myrow[id] && `id_user` = $_COOKIE[id]");
+                                           $myrow2 = mysql_fetch_array($sql2);
+                                               if(mysql_num_rows($sql2) != 0){
+                                                   printf('<tr>
+                                                        <td class="text-justify"><a href="#">%s</a></td>
                                                         <td class="text-justify">%s</td>
-                                                        <td class="text-justify">', $row[specialty]);
-                                         do {
-                                             printf('<li><a href="testing.php?educational=%s&test=%s"> %s (%s)</a></li>',$educational, $r[id], $r[test_name], $r[test_title]);
-                                         } while ($r = mysql_fetch_array($q));
-                                         printf('    </td>
-                                                    </tr>');
-                                     }
-                                     }
-                                 while ($row = mysql_fetch_array($query));
+                                                        <td class="text-center">Тест пройдено</td>
+                                                   </tr>',$myrow[test_name],$myrow1[specialty]);
+                                               }
+                                               else {
+                                                   printf('<tr>
+                                                        <td class="text-justify"><a href="testing.php?educational=%s&test=%s">%s</a></td>
+                                                        <td class="text-justify">%s</td>
+                                                        <td class="text-center">Тест не пройдено</td>
+                                                   </tr>',$educational,$myrow[id],$myrow[test_name],$myrow1[specialty]);
+                                               }
+
+                                        }
+                                  }
+                               while ($myrow = mysql_fetch_array($sql));
                             ?>
                             </tbody>
                         </table>

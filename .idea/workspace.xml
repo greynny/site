@@ -2,29 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1f039a-edf5-40cc-8cfa-62faa7dd7da3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/user.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/add_profession.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/change_password.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/del_coockie.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/del_profession.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/signin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/signup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about.php" beforeDir="false" afterPath="$PROJECT_DIR$/about.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/pr/1_9_10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/change_password.php" beforeDir="false" afterPath="$PROJECT_DIR$/change_password.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/check.php" beforeDir="false" afterPath="$PROJECT_DIR$/check.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/edu.php" beforeDir="false" afterPath="$PROJECT_DIR$/edu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/educational.php" beforeDir="false" afterPath="$PROJECT_DIR$/educational.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/meta.php" beforeDir="false" afterPath="$PROJECT_DIR$/include/meta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profession.php" beforeDir="false" afterPath="$PROJECT_DIR$/profession.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search.php" beforeDir="false" afterPath="$PROJECT_DIR$/search.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/signin.php" beforeDir="false" afterPath="$PROJECT_DIR$/signin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/signup.php" beforeDir="false" afterPath="$PROJECT_DIR$/signup.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/user.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +96,7 @@
       <workItem from="1584806081620" duration="14703000" />
       <workItem from="1584953379992" duration="1781000" />
       <workItem from="1585040484788" duration="16373000" />
+      <workItem from="1585304480940" duration="8744000" />
     </task>
     <task id="LOCAL-00001" summary="step 1">
       <created>1582899634682</created>
@@ -228,11 +211,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="step 5" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="115" key="CommitChangelistDialog2" timestamp="1585118641636">
+    <state x="585" y="115" key="CommitChangelistDialog2" timestamp="1585118709237">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="585" y="115" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1584107367542" />
-    <state x="585" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585118641636" />
+    <state x="585" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585118709237" />
     <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1584177891533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -243,11 +226,11 @@
     </state>
     <state x="795" y="444" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1583145862337" />
     <state x="795" y="444" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584701761156" />
-    <state x="552" y="242" key="Vcs.Push.Dialog.v2" timestamp="1585118650685">
+    <state x="552" y="242" key="Vcs.Push.Dialog.v2" timestamp="1585118713138">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="242" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1583846761386" />
-    <state x="552" y="242" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585118650685" />
+    <state x="552" y="242" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585118713138" />
     <state x="623" y="225" key="search.everywhere.popup" timestamp="1584265233056">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

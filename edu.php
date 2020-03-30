@@ -2,8 +2,8 @@
 session_start();
 include_once 'connect/connect.php';
 include_once 'user/del_coockie.php';
-if (isset($_GET['educational'])){
-    $educational =$_GET['educational'];
+if (isset($_GET['educational']) && !empty($_GET['educational'])){
+    $educational = (int)$_GET['educational'];
 }
 else {
     $educational = 1;
@@ -313,6 +313,7 @@ else {
                             <?
                             $sql = mysql_query("SELECT * FROM `specialty` WHERE `educational` =  $educational");
                             $myrow = mysql_fetch_array($sql);
+                            if (mysql_num_rows($sql) != 0){
                             $i = 1;
                             do {
                                 $sql1 = mysql_query("SELECT * FROM `employment` WHERE `educational` =  $educational AND `specialty` = $myrow[id]");
@@ -332,6 +333,7 @@ else {
                             $i++;
                             }
                             while($myrow = mysql_fetch_array($sql));
+                            }
                             ?>
                             </tbody>
                         </table>

@@ -172,7 +172,7 @@ include_once 'user/del_coockie.php';
                         <li id="tab1" style="cursor: pointer"><a>Вибір професії</a><br><span class="small text-muted">Професії, що були добавлені користувачем, для подальшого ознайомлення</span></li>
                         <li id="tab2" style="cursor: pointer"><a>Турнір професій</a><br><span class="small text-muted">Професії будуть боротися за твій вибір, уважно роби свій вибір.</span></li>
                         <li id="tab4" style="cursor: pointer"><a>Тест на профорієнтацію онлайн</a><br><span class="small text-muted">Щоб скоротити сферу пошуку майбутньої професії можна пройти тест на професійні інтереси. Після цього питання вибору професії підлітком перестане стояти руба. А ви готові дізнатися до якої категорії професійної діяльності більш схильні? Приступимо?</span></li>
-                        <li id="tab3" style="cursor: pointer"><a>Конкурс абітурієнтів для здобуття ОС "Бакалавр"</a><br><span class="small text-muted">Конкурс абітурієнтів на місця регіонального замовлення денної формі навчання за підсумками прийому в 2018-2019 році на базі ОКР молодший спеціаліст для здобуття ОС "Бакалавр"</span></li>
+                        <li id="tab3" style="cursor: pointer"><a>Результати тестування</a><br><span class="small text-muted">За результатом тестування, питання вибору професії,перестане стояти руба.</span></li>
                         <li id="modal" style="cursor: pointer"><a>Рекламний ролік для АБІТУРІЄНТА</a><br><span class="small text-muted">Рекламний ролік для АБІТУРІЄНТА</span></li>
                     </ul>
                 </div>
@@ -304,8 +304,39 @@ include_once 'user/del_coockie.php';
 
                 </header>
                 <header class="page-header tab3" style="display: none">
-                            <h4 class="page-title text-justify">Конкурс абітурієнтів на місця регіонального замовлення денної формі навчання за підсумками прийому в 2018-2019 році на базі ОКР молодший спеціаліст для здобуття ОС "Бакалавр"</h4>
-                            <div id="chart_3" class="chart"></div>
+                            <h4 class="page-title text-justify">Результати тестування</h4>
+                    <blockquote>За результатом тестування, питання вибору професії,перестане стояти руба.</blockquote>
+                    <table id="table_id4" class="display">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Назва теста</th>
+                                <th class="text-center">Специфіка теста</th>
+                                <th class="text-center">Результат теста</th>
+                                <th class="text-center">Результат тестування</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?
+                            $sql = mysql_query("SELECT * FROM `test_result` WHERE `id_user` = $_COOKIE[id]");
+                            $myrow = mysql_fetch_array($sql);
+                             if(mysql_num_rows($sql) != 0) {
+                                 do {
+                                     $sql1 = mysql_query("SELECT * FROM `test` WHERE `id` = $myrow[id_test]");
+                                     $myrow1 = mysql_fetch_array($sql1);
+                                     printf('<tr>
+                                                        <td class="text-justify">%s</td>
+                                                        <td class="text-justify">%s</td>
+                                                        <td class="text-justify">%s</td>
+                                                        <td class="text-center">%s</td>
+                                                    </tr>',$myrow1[test_name],$myrow1[test_title],$myrow1[result],$myrow[id_result]);
+                                 }
+                                 while($myrow = mysql_fetch_array($sql));
+
+                             }
+                        ?>
+
+                        </tbody>
+                    </table>
                 </header>
                 <script>
                 $('#tab1').click(function() {
@@ -342,16 +373,33 @@ include_once 'user/del_coockie.php';
                         <tbody>
                         <?
                         $query = mysql_query("SELECT * FROM `test` ORDER BY `id_educational`");
-                        $row = mysql_fetch_array($query);
+                        $myrow = mysql_fetch_array($query);
                         if (mysql_num_rows($query) != 0) {
                         do {
+                            $sql = mysql_query("SELECT * FROM `specialty` WHERE `id`=$myrow[id_specialty] ");
+                            $row = mysql_fetch_array($sql);
+                                $sql1 = mysql_query("SELECT * FROM `educational` WHERE `id`=$myrow[id_educational] ");
+                                $row1 = mysql_fetch_array($sql1);
+                                    $sql2 = mysql_query("SELECT * FROM `test_result` WHERE `id_test`=$myrow[id] && `id_user` =  $_COOKIE[id]");
+                                    $row2 = mysql_fetch_array($sql2);
+                                        if (mysql_num_rows($sql2) != 0)
+                                        {
+                                            printf('<tr>
+                                                                <td class="text-justify"><a href="#">%s</a></td>
+                                                                <td class="text-justify">%s</td>
+                                                                <td class="text-justify"><a href="edu.php?educational=%s" target="_blank">%s</a></td>
+                                                                <td class="text-center">Тест  пройдено</td>
+                                                            </tr>',$myrow[test_name],$row[specialty],$row1[id],$row1[educational]);
+                                        }
+                                        else {
+                                            printf('<tr>
+                                                                <td class="text-justify"><a href="testing.php?educational=%s&test=%s">%s</a></td>
+                                                                <td class="text-justify">%s</td>
+                                                                <td class="text-justify"><a href="edu.php?educational=%s" target="_blank">%s</a></td>
+                                                                <td class="text-center">Тест не пройдено</td>
+                                                            </tr>',$myrow[educational],$myrow[id],$myrow[test_name],$row[specialty],$row1[id],$row1[educational]);
+                                        }
 
-                                printf('<tr>
-                            <td class="text-justify"><a href="testing.php?educational=%s&test=%s">%s</a></td>
-                            <td class="text-justify">Спеціальність</td>
-                            <td class="text-justify">Навчальний заклад</td>
-                            <td class="text-justify">Відмітка про проходження теста</td>
-                        </tr>',$row[educational],$row[id],$row[test_name]);
                         }
                         while ($row = mysql_fetch_array($query));
                         }
@@ -382,6 +430,7 @@ include_once 'user/del_coockie.php';
             $('#table_id').DataTable();
             $('#table_id2').DataTable();
             $('#table_id3').DataTable();
+            $('#table_id4').DataTable();
         } );
     </script>
   <!-- JavaScript libs are placed at the end of the document so the pages load faster -->

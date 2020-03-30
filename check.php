@@ -49,11 +49,25 @@ if (isset($_GET['test'])){
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="index.php">Головна</a></li>
+                    <?
+
+                    if((isset($_COOKIE["id"])) and (!empty($_COOKIE["id"]))){
+                        echo '
+                    <li><a href="index.php">Головна</a></li>
 					<li><a href="about.php">Про сервіс</a></li>
-					<li><a href="#">Особистий кабінет</a></li>
+					<li><a href="user.php">Особистий кабінет</a></li>
 					<li><a href="contact.php">Контакт</a></li>
-					<li class="active"><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>
+					<li><a class="btn" href="?del_coockie" name="del_coockie">'.$_COOKIE[user].' / Вийти</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="index.php">Головна</a></li>
+					<li><a href="about.php">Про сервіс</a></li>
+					<li><a href="#" >Особистий кабінет</a></li>
+					<li><a href="contact.php">Контакт</a></li>
+					<li><a class="btn" href="signin.php">Авторизація / Реєстрація</a></li>';
+                    }
+
+                    ?>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -93,7 +107,13 @@ if (isset($_GET['test'])){
                     <blockquote><? echo $myrow[result]; ?></blockquote>
 				</header>
 
-				<?  echo '<div class="alert alert-success alert-dismissible" role="alert">
+				<?
+                $sql1 = mysql_query("SELECT MAX(id) as id FROM test_result");
+                $myrow1 = mysql_fetch_array($sql1);
+                    $max = 1 + $myrow1["id"];
+                        $query1 = "INSERT INTO `test_result` (`id`,`id_user`,`id_test`,`id_result`) VALUES ('$max','$_COOKIE[id]','$test','$result')";
+                        $result1 = mysql_query($query1) or die ("<p>Помилка запиту</p>");
+                echo '<div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
                             Дані занесено до бази. Через 30 секунд Вас буде перенаправлено на початкову сторінку, або перейдіть за <a href = "edu.php?educational='.$myrow[id_educational].'">посиланням</a>
