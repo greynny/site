@@ -65,6 +65,10 @@ mb_internal_encoding('UTF-8');
     <!-- arcticModal -->
     <script src="assets/js/jquery.arcticmodal.js"></script>
     <link rel="stylesheet" href="assets/css/jquery.arcticmodal.css">
+
+    <!-- БЕГУНОК -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.js"></script>
+    <link rel="stylesheet" href="assets/css/bootstrap-slider.css">
 </head>
 
 <body>
@@ -140,7 +144,7 @@ mb_internal_encoding('UTF-8');
                 ?>
                 <div class="row">
                     <div class="container-fluid">
-                        <div class="row row-flex">
+                        <div class="row">
                             <div class="col-md-3 col-sm-3">
                                 <select class="form-control" id="select1" style="text-transform: uppercase;">
                                     <option value="" disabled selected>Вибрати професію</option>
@@ -171,12 +175,13 @@ mb_internal_encoding('UTF-8');
                                 s27.202-37.185,46.917-8.488c19.715,28.693,38.687,13.116,46.502,4.832c7.817-8.282,27.386-15.906,41.405,6.294V0H0.48
                                 L0.732,193.75z"></path>
                                             </g>
-                                                 <text transform="matrix(0.9566 0 0 1 150 130)" fill="#fff" font-size="100">0</text>
+                                                 <text transform="matrix(0.9566 0 0 1 150 130)" fill="#fff" font-size="100" id="newsBlock1">0</text>
                                             </svg>
-                                        <div class="pricing-content">
+                                        <div class="pricing-content ">
                                             <h1 class="title" style="font-size: 250%" id="text1">Вибір професії</h1>
                                             <ul class="pricing-content">
-
+                                                <li>&ensp;</li>
+                                                <li>&ensp;</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -192,18 +197,20 @@ mb_internal_encoding('UTF-8');
                                 s27.202-37.185,46.917-8.488c19.715,28.693,38.687,13.116,46.502,4.832c7.817-8.282,27.386-15.906,41.405,6.294V0H0.48
                                 L0.732,193.75z"></path>
                                             </g>
-                                            <text transform="matrix(0.9566 0 0 1 150 130)" fill="#fff" font-size="100">0</text>
+                                            <text transform="matrix(0.9566 0 0 1 150 130)" fill="#fff" font-size="100" id="newsBlock2">0</text>
                                         </svg>
-                                        <div class="pricing-content">
+                                        <div class="pricing-content ">
                                             <h1 class="title" style="font-size: 250%" id="text2">Вибір професії</h1>
                                             <ul class="pricing-content">
+                                                <li>&ensp;</li>
+                                                <li>&ensp;</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-3">
-                                <select class="form-control" id="select2" style="text-transform: uppercase;">
+                                <select class="form-control" id="select2" style="text-transform: uppercase;" disabled="disabled">
                                     <option value="" disabled selected>Вибрати професію</option>
                                     <?
                                     $query = mysql_query("SELECT * FROM `user_choice` WHERE `id_user` = $_COOKIE[id] && `choice`=1");
@@ -222,11 +229,54 @@ mb_internal_encoding('UTF-8');
                                     <img class="img-fluid" src="assets/images/prof2.jpg" alt="...">
                                 </div>
                             </div>
+
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <div id="slider" style="display: none">
+                                <input id="ex" type="text" data-slider-value="[-4, 4]" data-slider-ticks="[3, 2, 1, 0, 1, 2, 3]"   data-slider-lock-to-ticks="true" data-value="0,0" class="mt-3"   />
+                            </div>
+                            <hr>
+                            <button class="btn btn-primary mt-5" type="reset" id="reset" disabled="disabled">ЗМІНИТИ ПРОФЕСІЇ НА РИНГУ</button>
+                            <button class="btn btn-primary mt-5" type="submit" id="end" disabled="disabled" >ЗАВЕРШИТИ БИТВУ</button>
+                            <script>
+                                $("#ex").slider({
+                                    value: [0, 0],
+                                    ticks: [-3, -2, -1, 0, 1, 2, 3],
+                                    lock_to_ticks: true,
+
+                                });
+                                var Name1 = $(".min-slider-handle").attr("aria-valuenow");
+                                $("#newsBlock1").text(Name1);
+                                var Name2 = $(".max-slider-handle").attr("aria-valuenow");
+                                $("#newsBlock2").text(Name2);
+
+                                $(".slider").click(function(e) {
+                                    e.preventDefault();
+                                    var Name1 = Math.abs($(".min-slider-handle").attr("aria-valuenow"));
+                                    $("#newsBlock1").text(Name1);
+                                    var Name2 = Math.abs($(".max-slider-handle").attr("aria-valuenow"));
+                                    $("#newsBlock2").text(Name2);
+                                    if ((Math.abs($(".max-slider-handle").attr("aria-valuenow")) == '3') || (Math.abs($(".min-slider-handle").attr("aria-valuenow")) == '3')){
+                                        $('#slider').css({'display':'none'});
+                                        $("#employment1").attr("value",$('#select1').val());
+                                        $("#employment2").attr("value",$('#select2').val());
+                                        $("#rang1").attr("value",Math.abs($(".min-slider-handle").attr("aria-valuenow")));
+                                        $("#rang2").attr("value",Math.abs($(".max-slider-handle").attr("aria-valuenow")));
+                                        $("#form_result").submit();
+
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
+
                 </div>
+
             </div>
+
             <script>
+
                 $("#select1").change(function(e) {
                     e.preventDefault();
                     var value = $('#select1 option:selected').text();
@@ -240,7 +290,9 @@ mb_internal_encoding('UTF-8');
                             $('#selprof1').html(data);
                         }
                     });
-
+                    $('#select2').removeAttr('disabled','disabled');
+                    $('#select1').attr('disabled','disabled');
+                    $('#reset').removeAttr('disabled','disabled');
                 });
                 $("#select2").change(function(e) {
                     e.preventDefault();
@@ -255,11 +307,45 @@ mb_internal_encoding('UTF-8');
                             $('#selprof2').html(data);
                         }
                     });
+                    $('#select2').attr('disabled','disabled');
+                    $('#slider').css({'display':'block'});
+                    $('#end').removeAttr('disabled','disabled');
+                });
+                $("#reset").click(function () {
+                    setTimeout(function(){
+                        document.location.href = document.location;
+                    },0);
+                });
+
+                $("#end").click(function (e) {
+                    e.preventDefault();
+                    $("#employment1").attr("value",$('#select1').val());
+                    $("#employment2").attr("value",$('#select2').val());
+                    $("#rang1").attr("value",Math.abs($(".min-slider-handle").attr("aria-valuenow")));
+                    $("#rang2").attr("value",Math.abs($(".max-slider-handle").attr("aria-valuenow")));
+                    $("#form_result").submit();
+                });
+                /* КОЛОНКИ ОДИНАКОВОЙ ВЫСОТЫ*/
+                $(document).ready(function(){
+                    function maxh(colums){
+                        colums.height(Math.max(colums.height()));
+                    };
+                    maxh($(".thumb div"));
+                    $("#ex25").slider({
+                        value: [1, 100],
+                        ticks: [1, 50, 100, 150, 200],
+                        lock_to_ticks: true
+                    });
                 });
             </script>
+    <form id="form_result" action="result.php" method="post" hidden>
+        <input id="employment1" name="employment1" >
+        <input id="employment2" name="employment2">
+        <input id="rang1" name="rang1">
+        <input id="rang2" name="rang2">
+    </form>
 			<!-- /container -->
     <?  include_once 'include/footer.php';  ?>
-
   <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="assets/js/headroom.min.js"></script>

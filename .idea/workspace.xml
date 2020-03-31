@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1f039a-edf5-40cc-8cfa-62faa7dd7da3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/user/addselect2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/bootstrap-slider.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/result.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ring.php" beforeDir="false" afterPath="$PROJECT_DIR$/ring.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/addselect1.php" beforeDir="false" afterPath="$PROJECT_DIR$/user/addselect1.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,11 +21,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1YRJT3zc2Gqkw99yMuDnQ2f1EJi" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -39,6 +41,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -97,6 +100,8 @@
       <workItem from="1585040484788" duration="16373000" />
       <workItem from="1585304480940" duration="8744000" />
       <workItem from="1585572560483" duration="6557000" />
+      <workItem from="1585591110258" duration="8970000" />
+      <workItem from="1585637674880" duration="4511000" />
     </task>
     <task id="LOCAL-00001" summary="step 1">
       <created>1582899634682</created>
@@ -211,11 +216,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="step 5" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="115" key="CommitChangelistDialog2" timestamp="1585118709237">
+    <state x="585" y="115" key="CommitChangelistDialog2" timestamp="1585579312016">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="585" y="115" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1584107367542" />
-    <state x="585" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585118709237" />
+    <state x="585" y="115" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585579312016" />
     <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1584177891533">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -226,11 +231,15 @@
     </state>
     <state x="795" y="444" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1583145862337" />
     <state x="795" y="444" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584701761156" />
-    <state x="552" y="242" key="Vcs.Push.Dialog.v2" timestamp="1585118713138">
+    <state x="552" y="242" key="Vcs.Push.Dialog.v2" timestamp="1585579315161">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="242" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1583846761386" />
-    <state x="552" y="242" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585118713138" />
+    <state x="552" y="242" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585579315161" />
+    <state x="769" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585591123063">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585591123063" />
     <state x="623" y="225" key="search.everywhere.popup" timestamp="1584265233056">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
